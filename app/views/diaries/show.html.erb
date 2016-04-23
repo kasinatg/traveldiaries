@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="text-right">
+  <%= @diary.diaryname %>
+</h3>
+<span class="text-right">
+<% if user_signed_in? %>
+<p><%= link_to 'Edit', edit_diary_path(@diary) %> |
+<%= link_to 'Back', diaries_path %></p>
+<% end %>
+</span>
+<hr>
+<p>
+  <%= raw(@diary.content) %>
+</p>
+
+<p class="text-right">
+  <%= @diary.status %> on 
+  <%= @diary.published %> | 
+  Search Keywords:
+  <%= @diary.keywords %>
+</p>
+
+<hr>
+<h4 class="text-left">User Comments:</h4>
+<hr>
+<div class="row text-right" id="comments">
+  <%= render @diary.comments %>
+</div>
+
+<%= link_to 'New Comment', new_comment_path(diary_id: @diary.id), remote:true, :class=>'btn btn-success' %>
+<div id="comment-form" style="display:none;"></div>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @comment.description %>
+</p>
+
+<p>
+  <strong>Createddate:</strong>
+  <%= @comment.createddate %>
+</p>
+
+<p>
+ <strong>Diary:</strong>
+ <%= (@comment.diary.try(:diaryname) || "NA")%>
+</p>
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>

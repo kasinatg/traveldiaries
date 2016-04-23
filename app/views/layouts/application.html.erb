@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h2><%= link_to('The Diaries', controller:'/welcome') %></h2>
+            </div>
+            <div class="navbar-collapse collapse">
+                <div class="navbar-right">
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                       <% if user_signed_in? %>
+                            <li><%= link_to('Home', controller:'welcome', :class=>"text-danger text-center") %></li>
+                            <li><%= link_to('My Diaries', diaries_url, :class=>"text-danger text-center") %></li>
+                            <li class="text-center">
+                              <p class="text-primary text-center">Welcome, <%= current_user.email %> !</p>
+                            </li>
+                            <li>
+                              <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class=>"text-default text-center") %>
+                            </li>
+                       <% else %>
+                           <li><%= link_to('Login', new_user_session_path, :class=>"text-default text-center") %> </li>
+                       <% end %>
+                    </ul>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+      <div class="row">
+          <%= yield %>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+          <footer>
+              
+          </footer>
+      </div>
+    </div>
+</body>
+</html>

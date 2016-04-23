@@ -1,0 +1,52 @@
+<div class="row pull-right">
+    <a href="https://traveldiaries-gayathrik.c9users.io/apipie" class="greenbutton" >API Documentation</a>
+</div>
+<div class="row">
+ <div class="col-md-3">
+  <h2>Start Writing</h2>
+  <h4>Share you expreience...</h4>
+   <% if user_signed_in? %>
+      <%= link_to('Create your diary', new_diary_path, :class=>'btn btn-success btn-lg') %>
+   <% else %>
+       <%= link_to('Create your diary', new_user_session_path, :class=>'btn btn-success btn-lg') %>
+   <% end %>
+   <br>
+   <br>
+   <h5>The world is a book and those who do not travel read only one page</h5>
+   <p> - St.Augustin</p>
+ </div>
+ <div class="col-md-8">
+  <img src="http://www.dev.helenplum.org/sites/default/files/articles/row-of-books.jpg" height="300" width="800" class="img-square"/>
+ </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="row">
+ <div class="col-xs-12 col-md-8">
+ </div>
+ <div class="col-xs-6 col-md-4">
+   <p>If you don’t have time to read, you don’t have the time (or the tools) to write. Simple as that</p>
+   <p>– Stephen King</p>
+ </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <h3>Diaries... </h3>
+  </div>
+  <div class="col-md-6 pull-right">
+      <%= form_tag(diaries_url, method: "get", remote:true, :id => "diaries_search") do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+  </div>
+</div>
+<div class="row">
+    <div id="diaries">
+      <%= render @diaries %>
+    </div>
+  </div>
+</div>

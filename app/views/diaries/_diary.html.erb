@@ -1,0 +1,18 @@
+   <% if diary == @current_diary %>
+        <div id="current_diary" class="col-md-3">
+    <% else %>
+        <div class="col-md-3">
+    <% end %>
+   
+       <div>
+          <div class="panel-heading"><h5><%= diary.diaryname %></h5></div>
+          <div class="panel-body"><p><%= raw(diary.content[0, 100]) %></p></div>
+          <div>
+              <span><%= link_to('Read more', diary_url(diary.id), :class=>'btn btn-default') %></span>
+              <% if user_signed_in?  %>
+                  <span><%= link_to('Delete', diary, method: :delete, data: { confirm: 'Are you sure?' }, remote:true, :class=>'btn btn-default') %></span>
+              <% end %>
+          </div>
+       </div>
+  </div>
+  

@@ -1,0 +1,47 @@
+<%= javascript_include_tag Ckeditor.cdn_url %>
+
+<%= form_for(@diary, remote:true) do |f| %>
+  <% if @diary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@diary.errors.count, "error") %> prohibited this diary from being saved:</h2>
+
+      <ul>
+      <% @diary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :diaryname %><br>
+    <%= f.text_field :diaryname %>
+  </div>
+  <div class="field">
+    <%= f.label :published %><br>
+    <%= f.date_select :published %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.cktext_area :content, :as => :ckeditor %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, options_for_select(@statuses.collect {|s| [s[0].humanize, s[0]]}, selected: @diary.status), {} %>
+  </div>
+  <div class="field">
+    <%= f.label :keywords %><br>
+    <%= f.text_field :keywords %>
+  </div>
+  <div class="field">
+     <%= f.label :user_id %><br>
+     <%= f.select :user_id,
+     options_for_select(User.all.collect {|a| ["#{a.email}", a.id]},
+     selected: (@diary.user ? @diary.user.id : User.first.id)),
+     {} %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

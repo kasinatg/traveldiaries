@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="col-md-12 text-center">My Diaries</h1>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-6">
+      <%= form_tag(diaries_url, method: "get", remote:true, :id => "diaries_search") do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+  </div>
+  <div class="col-md-4"></div>
+  <div class="col-md-2">
+    <%= link_to 'New Diary', new_diary_path, remote: true, :class => 'btn btn-info' %>
+  </div>
+</div>
+<div class="row">
+  <br>
+    <div id="diaries">
+      <%= render @diaries %>
+    </div>
+  <br>
+</div>
+
+<div id="diary-form" style="display:none;"></div>
