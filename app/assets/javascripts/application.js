@@ -17,3 +17,4 @@
 //= require ckeditor/init
 //= require bootstrap-sprockets
 //= require jquery-ui/effect-blind
+//= require ckeditor/override
